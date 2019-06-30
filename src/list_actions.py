@@ -15,6 +15,7 @@ def list_pizzas():
     pizzas_data = _cursor.fetchall()
 
     pizzas_list_str = ",".join([PIZZA_JSON.format(*x) for x in pizzas_data])
+    pizzas_list_str = pizzas_list_str.replace("'", '"')  # for ingredients are not properly formatted TODO: fix this
     _connection.close()
 
     return pizzas_list_str
